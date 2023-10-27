@@ -76,11 +76,11 @@ export async function getEnterprise(id: string) {
         id: item.id,
         title: item.title.rendered,
 
-        featured_media: await getMediaIfIdExists(item.featured_media),
-        sobre_imagem: await getMediaIfIdExists(sobre_imagem),
-        video_background: await getMediaIfIdExists(video_background),
-        diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
-        mapa_imagem: await getMediaIfIdExists(mapa_imagem),
+        featured_media: (await getMediaIfIdExists(item.featured_media)) || null,
+        sobre_imagem: (await getMediaIfIdExists(sobre_imagem)) || null,
+        video_background: (await getMediaIfIdExists(video_background)) || null,
+        diferenciais_imagem: (await getMediaIfIdExists(diferenciais_imagem)) || null,
+        mapa_imagem: (await getMediaIfIdExists(mapa_imagem)) || null,
 
         imovel_banners: await Promise.all(
           returnArray(imovel_banners).map(async (banner: any) => ({
