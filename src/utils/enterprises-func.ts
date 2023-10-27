@@ -93,7 +93,8 @@ export async function getEnterprise(id: string) {
             getMediaIfIdExists(mapa_imagem),
           ])
         ).reduce((acc, item, i) => {
-          return { ...acc, [image_keys[i]]: item };
+          console.log('JORGE BRUNETTO');
+          return !item ? acc : { ...acc, [image_keys[i]]: item };
         }, {}),
 
         // featured_media: await getMediaIfIdExists(item.featured_media),
