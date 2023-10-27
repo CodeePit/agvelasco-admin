@@ -92,13 +92,13 @@ export async function getEnterprise(id: string) {
             getMediaIfIdExists(diferenciais_imagem),
             getMediaIfIdExists(mapa_imagem),
           ])
-        ).reduce(
-          (acc, item, i) => ({
+        ).reduce((acc, item, i) => {
+          console.log([image_keys[i]], item);
+          return {
             ...acc,
             [image_keys[i]]: item,
-          }),
-          {},
-        ),
+          };
+        }, {}),
 
         // featured_media: await getMediaIfIdExists(item.featured_media),
         // sobre_imagem: await getMediaIfIdExists(sobre_imagem),
