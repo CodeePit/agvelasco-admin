@@ -11,7 +11,6 @@ import 'swiper/css/pagination';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from 'contexts/auth';
 
-export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
 
 const roboto = Roboto({
