@@ -49,8 +49,9 @@ function returnArray(v: any) {
 }
 
 async function getMediaIfIdExists(id: any) {
-  if (!`${id}`?.length) return null;
-  return await getMedia(`${id}`).then((r) => r || null);
+  if (!`${id}`.length) return undefined;
+  console.log(await getMedia(`${id}`));
+  return await getMedia(`${id}`);
 }
 
 export async function getEnterprise(id: string) {
