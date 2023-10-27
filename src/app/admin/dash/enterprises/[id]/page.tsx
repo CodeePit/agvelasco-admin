@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 }
 
 const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ params }) => {
-  let enterprise = undefined;
+  const enterprise = undefined;
 
   // if (params.id !== 'create') enterprise = await getEnterprise(params.id);
   // if (params.id !== 'create' && !enterprise) return notFound();
