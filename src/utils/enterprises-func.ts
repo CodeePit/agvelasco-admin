@@ -94,10 +94,7 @@ export async function getEnterprise(id: string) {
           ])
         ).reduce((acc, item, i) => {
           console.log([image_keys[i]], item);
-          return {
-            ...acc,
-            [image_keys[i]]: item,
-          };
+          return !item ? acc : { ...acc, [image_keys[i]]: item };
         }, {}),
 
         // featured_media: await getMediaIfIdExists(item.featured_media),
