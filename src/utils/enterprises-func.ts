@@ -83,19 +83,19 @@ export async function getEnterprise(id: string) {
         // mapa_imagem: await getMediaIfIdExists(mapa_imagem),
         // diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
 
-        featured_media: `${item.featured_media}`.length
+        featured_media: !!`${item.featured_media}`.length
           ? await getMedia(`${item.featured_media}`)
           : undefined,
-        sobre_imagem: `${sobre_imagem}`.length
+        sobre_imagem: !!`${sobre_imagem}`.length
           ? await getMedia(`${sobre_imagem}`)
           : undefined,
-        video_background: `${video_background}`.length
+        video_background: !!`${video_background}`.length
           ? await getMedia(`${video_background}`)
           : undefined,
-        mapa_imagem: `${mapa_imagem}`.length
+        mapa_imagem: !!`${mapa_imagem}`.length
           ? await getMedia(`${mapa_imagem}`)
           : undefined,
-        diferenciais_imagem: `${diferenciais_imagem}`.length
+        diferenciais_imagem: !!`${diferenciais_imagem}`.length
           ? await getMedia(`${diferenciais_imagem}`)
           : undefined,
 
