@@ -49,7 +49,7 @@ function returnArray(v: any) {
 }
 
 async function getMediaIfIdExists(id: any) {
-  return `${id}`.length ? (await getMedia(`${id}`))?.url : undefined;
+  return `${id}`.length ? (await getMedia(`${id}`))?.url : null;
 }
 
 export async function getEnterprise(id: string) {
@@ -109,12 +109,10 @@ export async function getEnterprise(id: string) {
         ),
       } as Enterprise;
     })
-    .catch(() => undefined);
+    .catch(() => null);
 }
 
-export async function getPartialOfEnterprises(): Promise<
-  EnterprisePartial[] | undefined
-> {
+export async function getPartialOfEnterprises(): Promise<EnterprisePartial[] | null> {
   return api
     .get(
       '/imovel?_fields=acf.status,acf.icones,acf.galeria,acf.plantas,acf.imovel_banner,acf.galeria_obra,acf.sobre_imagem,acf.video_background,acf.diferenciais_imagem,acf.mapa_imagem,acf.imovel_banners,featured_media,id,title',
@@ -127,7 +125,7 @@ export async function getPartialOfEnterprises(): Promise<
             id: item.id,
             title: item.title.rendered,
             status: item.acf.status,
-            featured_media: media?.url,
+            featured_media: media?.url || null,
             imagesIds: [
               item.featured_media,
               item.sobre_imagem,
@@ -146,7 +144,7 @@ export async function getPartialOfEnterprises(): Promise<
         }),
       );
     })
-    .catch(() => undefined);
+    .catch(() => null);
 }
 
 function monthNameToNumber(monthName: string) {
