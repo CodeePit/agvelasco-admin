@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { getEnterprise, getEnterprisesId } from 'utils/enterprises-func';
 
 export const dynamicParams = false;
-
 export async function generateStaticParams() {
   const enterprises = await getEnterprisesId();
   return [{ id: 'create' }, ...(enterprises || [])];
@@ -29,7 +28,7 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
         </Link>
       </section>
 
-      <EnterpriseForm id={params.id} enterprise={enterprise as any} />
+      {/* <EnterpriseForm id={params.id} enterprise={enterprise as any} /> */}
     </>
   );
 };

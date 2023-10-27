@@ -7,8 +7,6 @@ import { MenuContent } from './menu-content';
 import { Logo } from 'assets/logo';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
-
 const DashLayout: BTypes.NLPage<{}, true> = async ({ children }) => {
   return (
     <>

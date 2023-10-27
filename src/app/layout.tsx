@@ -11,6 +11,8 @@ import 'swiper/css/pagination';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from 'contexts/auth';
 
+export const dynamic = 'force-dynamic';
+
 const roboto = Roboto({
   weight: ['400', '700', '900'],
   subsets: ['latin'],

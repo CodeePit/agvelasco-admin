@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { UserAuthForm } from './user-auth-form';
-import { Logo } from 'assets/logo';
 
 const Admin: BTypes.NPage = () => {
   const cookieStore = cookies();
