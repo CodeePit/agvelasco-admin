@@ -25,6 +25,7 @@ import { EnterprisePlans } from './enterprise-plans';
 import { UploadImageInput } from 'components/upload-image-input';
 import { createEnterprise } from './create-enterprise';
 import { editEnterprise } from './edit-enterprise';
+import { toast } from 'react-toastify';
 
 const FormSchema = z.object({
   name: z.string().optional(),
@@ -124,8 +125,18 @@ export const EnterpriseForm = ({
                 },
                 enterprise,
               )
-          ).finally(() => setLoading(false));
-          // .then(() => router.push('/admin/dash/enterprises'))
+          )
+            .then(() => {
+              router.push('/admin/dash/enterprises');
+              toast.success(
+                enterprise
+                  ? 'Alterações feitas com sucesso.'
+                  : 'Criação feita com sucesso',
+                { pauseOnHover: false },
+              );
+            })
+            .catch(() => toast.error('Ocorreu um erro. Tente novamente mais tarde.'))
+            .finally(() => setLoading(false));
         })}
         className="space-y-6 py-8 flex flex-col w-full mx-auto max-w-7xl px-8"
       >
@@ -232,7 +243,7 @@ export const EnterpriseForm = ({
         <Separator className="my-4" />
         <EnterprisePlans handlePlans={setPlans} plans={plans} />
 
-        <Button size="lg" className="uppercase" disabled={loading}>
+        <Button type="submit" size="lg" className="uppercase" disabled={loading}>
           {enterprise ? (
             <>
               Editar Empreendimento <Pencil className="ml-4 h-6 w-6" />
