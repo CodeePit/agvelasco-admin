@@ -4,7 +4,7 @@ import { MoveLeft } from 'lucide-react';
 import Link from 'next/link';
 import { getEnterprise, getEnterprisesId } from 'utils/enterprises-func';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 export const dynamicParams = false;
 export async function generateStaticParams() {
   const enterprises = await getEnterprisesId();
