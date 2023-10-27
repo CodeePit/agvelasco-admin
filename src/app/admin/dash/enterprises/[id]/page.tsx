@@ -8,7 +8,7 @@ import { getEnterprise, getEnterprisesId } from 'utils/enterprises-func';
 export const dynamicParams = false;
 export async function generateStaticParams() {
   const enterprises = await getEnterprisesId();
-  return [{ id: 'create' }, ...(enterprises || [])];
+  return [{ id: 'create', prop: null }, ...(enterprises || [])];
 }
 
 const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ params }) => {
