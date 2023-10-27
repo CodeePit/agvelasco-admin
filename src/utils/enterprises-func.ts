@@ -49,8 +49,7 @@ function returnArray(v: any) {
 }
 
 async function getMediaIfIdExists(id: any) {
-  console.log((`${id}`.length && (await getMedia(`${id}`))?.url) || null);
-  return (`${id}`.length && (await getMedia(`${id}`))?.url) || null;
+  return `${id}`.length ? (await getMedia(`${id}`))?.url || undefined : undefined;
 }
 
 export async function getEnterprise(id: string) {
@@ -77,11 +76,11 @@ export async function getEnterprise(id: string) {
         id: item.id,
         title: item.title.rendered,
 
-        featured_media: await getMediaIfIdExists(item.featured_media),
-        sobre_imagem: await getMediaIfIdExists(sobre_imagem),
+        // featured_media: await getMediaIfIdExists(item.featured_media),
+        // sobre_imagem: await getMediaIfIdExists(sobre_imagem),
         // video_background: await getMediaIfIdExists(video_background),
         // diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
-        mapa_imagem: await getMediaIfIdExists(mapa_imagem),
+        // mapa_imagem: await getMediaIfIdExists(mapa_imagem),
 
         imovel_banners: await Promise.all(
           returnArray(imovel_banners).map(async (banner: any) => ({
