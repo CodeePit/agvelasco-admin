@@ -20,6 +20,7 @@ export async function deleteMedia(id: number | string) {
 
 async function getMedia(id: string) {
   try {
+    if (!`${id}`?.length) throw '';
     const media = await api
       .get(`/media/${id}?_fields=media_details,source_url`)
       .then((r) => r.data)
@@ -77,11 +78,19 @@ export async function getEnterprise(id: string) {
         id: item.id,
         title: item.title.rendered,
 
-        featured_media: await getMediaIfIdExists(item.featured_media),
-        sobre_imagem: await getMediaIfIdExists(sobre_imagem),
-        video_background: await getMediaIfIdExists(video_background),
-        diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
-        mapa_imagem: await getMediaIfIdExists(mapa_imagem),
+        // featured_media: await getMediaIfIdExists(item.featured_media),
+        // sobre_imagem: await getMediaIfIdExists(sobre_imagem),
+        // video_background: await getMediaIfIdExists(video_background),
+        // mapa_imagem: await getMediaIfIdExists(mapa_imagem),
+        // diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
+
+        featured_media: await getMedia(`${item.featured_media}`).then((r) => r || null),
+        sobre_imagem: await getMedia(`${sobre_imagem}`).then((r) => r || null),
+        video_background: await getMedia(`${video_background}`).then((r) => r || null),
+        mapa_imagem: await getMedia(`${mapa_imagem}`).then((r) => r || null),
+        diferenciais_imagem: await getMedia(`${diferenciais_imagem}`).then(
+          (r) => r || null,
+        ),
 
         imovel_banners: await Promise.all(
           returnArray(imovel_banners).map(async (banner: any) => ({
