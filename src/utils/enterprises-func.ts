@@ -49,6 +49,7 @@ function returnArray(v: any) {
 }
 
 async function getMediaIfIdExists(id: any) {
+  console.log((`${id}`.length && (await getMedia(`${id}`))?.url) || null);
   return (`${id}`.length && (await getMedia(`${id}`))?.url) || null;
 }
 
@@ -57,7 +58,6 @@ export async function getEnterprise(id: string) {
     .get(`/imovel/${id}?_fields=acf,featured_media,id,title`)
     .then(async (r) => {
       const item = r.data;
-      console.log(item);
       const {
         icones,
         galeria,
