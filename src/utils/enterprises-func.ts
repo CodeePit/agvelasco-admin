@@ -76,7 +76,7 @@ export async function getEnterprise(id: string) {
         id: item.id,
         title: item.title.rendered,
 
-        // featured_media: await getMediaIfIdExists(item.featured_media),
+        featured_media: await getMediaIfIdExists(item.featured_media),
         // sobre_imagem: await getMediaIfIdExists(sobre_imagem),
         // video_background: await getMediaIfIdExists(video_background),
         // diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
