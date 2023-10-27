@@ -84,13 +84,16 @@ export async function getEnterprise(id: string) {
         // mapa_imagem: await getMediaIfIdExists(mapa_imagem),
         // diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
 
-        featured_media: await getMedia(`${item.featured_media}`).then((r) => r || null),
-        sobre_imagem: await getMedia(`${sobre_imagem}`).then((r) => r || null),
-        video_background: await getMedia(`${video_background}`).then((r) => r || null),
-        mapa_imagem: await getMedia(`${mapa_imagem}`).then((r) => r || null),
-        diferenciais_imagem: await getMedia(`${diferenciais_imagem}`).then(
-          (r) => r || null,
-        ),
+        featured_media:
+          (await getMedia(`${item.featured_media}`).then((r) => r || null)) || undefined,
+        sobre_imagem:
+          (await getMedia(`${sobre_imagem}`).then((r) => r || null)) || undefined,
+        video_background:
+          (await getMedia(`${video_background}`).then((r) => r || null)) || undefined,
+        mapa_imagem:
+          (await getMedia(`${mapa_imagem}`).then((r) => r || null)) || undefined,
+        diferenciais_imagem:
+          (await getMedia(`${diferenciais_imagem}`).then((r) => r || null)) || undefined,
 
         imovel_banners: await Promise.all(
           returnArray(imovel_banners).map(async (banner: any) => ({
