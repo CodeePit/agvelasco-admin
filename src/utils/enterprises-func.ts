@@ -79,8 +79,8 @@ export async function getEnterprise(id: string) {
 
         featured_media: await getMediaIfIdExists(item.featured_media),
         sobre_imagem: await getMediaIfIdExists(sobre_imagem),
-        video_background: await getMediaIfIdExists(video_background),
-        diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
+        // video_background: await getMediaIfIdExists(video_background),
+        // diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
         mapa_imagem: await getMediaIfIdExists(mapa_imagem),
 
         imovel_banners: await Promise.all(
