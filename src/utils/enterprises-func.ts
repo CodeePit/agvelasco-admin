@@ -53,63 +53,67 @@ async function getMediaIfIdExists(id: any) {
 }
 
 export async function getEnterprise(id: string) {
-  return api
-    .get(`/imovel/${id}?_fields=acf,featured_media,id,title`)
-    .then(async (r) => {
-      const item = r.data;
-      const {
-        icones,
-        galeria,
-        plantas,
-        imovel_banner,
-        galeria_obra,
-        sobre_imagem,
-        video_background,
-        diferenciais_imagem,
-        mapa_imagem,
-        imovel_banners,
-        ...data
-      } = item.acf;
+  try {
+    return api
+      .get(`/imovel/${id}?_fields=acf,featured_media,id,title`)
+      .then(async (r) => {
+        const item = r.data;
+        const {
+          icones,
+          galeria,
+          plantas,
+          imovel_banner,
+          galeria_obra,
+          sobre_imagem,
+          video_background,
+          diferenciais_imagem,
+          mapa_imagem,
+          imovel_banners,
+          ...data
+        } = item.acf;
 
-      return {
-        ...data,
-        id: item.id,
-        title: item.title.rendered,
+        return {
+          ...data,
+          id: item.id,
+          title: item.title.rendered,
 
-        featured_media: await getMediaIfIdExists(item.featured_media),
-        // sobre_imagem: await getMediaIfIdExists(sobre_imagem),
-        // video_background: await getMediaIfIdExists(video_background),
-        // diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
-        // mapa_imagem: await getMediaIfIdExists(mapa_imagem),
+          featured_media: await getMediaIfIdExists(item.featured_media),
+          sobre_imagem: await getMediaIfIdExists(sobre_imagem),
+          video_background: await getMediaIfIdExists(video_background),
+          diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
+          mapa_imagem: await getMediaIfIdExists(mapa_imagem),
 
-        imovel_banners: await Promise.all(
-          returnArray(imovel_banners).map(async (banner: any) => ({
-            ...(await getMedia(`${banner.slider_banners_imagem}`)),
-            label: banner.slider_banners_link,
-          })),
-        ),
-        icones: await Promise.all(
-          returnArray(icones).map(async (icon: any) => ({
-            ...(await getMedia(`${icon.icone_imagem}`)),
-            label: icon.icone_texto,
-          })),
-        ),
-        galeria: await Promise.all(
-          returnArray(galeria).map(async (img: any) => await getMedia(`${img}`)),
-        ),
-        plantas: await Promise.all(
-          returnArray(plantas).map(async (plans: any) => ({
-            ...(await getMedia(`${plans.imagem_planta}`)),
-            label: plans.tipo,
-            desc: plans.descricao_planta,
-          })),
-        ),
-        galeria_obra: await Promise.all(
-          returnArray(galeria_obra).map(async (img: any) => await getMedia(`${img}`)),
-        ),
-      } as Enterprise;
-    })
-    .catch(() => undefined);
+          imovel_banners: await Promise.all(
+            returnArray(imovel_banners).map(async (banner: any) => ({
+              ...(await getMedia(`${banner.slider_banners_imagem}`)),
+              label: banner.slider_banners_link,
+            })),
+          ),
+          icones: await Promise.all(
+            returnArray(icones).map(async (icon: any) => ({
+              ...(await getMedia(`${icon.icone_imagem}`)),
+              label: icon.icone_texto,
+            })),
+          ),
+          galeria: await Promise.all(
+            returnArray(galeria).map(async (img: any) => await getMedia(`${img}`)),
+          ),
+          plantas: await Promise.all(
+            returnArray(plantas).map(async (plans: any) => ({
+              ...(await getMedia(`${plans.imagem_planta}`)),
+              label: plans.tipo,
+              desc: plans.descricao_planta,
+            })),
+          ),
+          galeria_obra: await Promise.all(
+            returnArray(galeria_obra).map(async (img: any) => await getMedia(`${img}`)),
+          ),
+        } as Enterprise;
+      })
+      .catch(() => undefined);
+  } catch {
+    return undefined;
+  }
 }
 
 export async function getPartialOfEnterprises(): Promise<
