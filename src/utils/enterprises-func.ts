@@ -49,8 +49,8 @@ function returnArray(v: any) {
 }
 
 async function getMediaIfIdExists(id: any) {
-  if (!`${id}`.length) return null;
   console.log(id);
+  if (!`${id}`.length) return null;
   return await getMedia(`${id}`).then((r) => r || null);
 }
 
