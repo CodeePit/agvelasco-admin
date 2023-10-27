@@ -50,8 +50,7 @@ function returnArray(v: any) {
 
 async function getMediaIfIdExists(id: any) {
   if (!`${id}`.length) return undefined;
-  console.log(await getMedia(`${id}`));
-  return await getMedia(`${id}`);
+  return (await getMedia(`${id}`))?.url;
 }
 
 export async function getEnterprise(id: string) {
@@ -78,11 +77,11 @@ export async function getEnterprise(id: string) {
         id: item.id,
         title: item.title.rendered,
 
-        featured_media: (await getMediaIfIdExists(item.featured_media))?.url,
-        sobre_imagem: (await getMediaIfIdExists(sobre_imagem))?.url,
-        video_background: (await getMediaIfIdExists(video_background))?.url,
-        mapa_imagem: (await getMediaIfIdExists(mapa_imagem))?.url,
-        diferenciais_imagem: (await getMediaIfIdExists(diferenciais_imagem))?.url,
+        featured_media: await getMediaIfIdExists(item.featured_media),
+        sobre_imagem: await getMediaIfIdExists(sobre_imagem),
+        // video_background: await getMediaIfIdExists(video_background),
+        // mapa_imagem: await getMediaIfIdExists(mapa_imagem),
+        diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
 
         imovel_banners: await Promise.all(
           returnArray(imovel_banners).map(async (banner: any) => ({
