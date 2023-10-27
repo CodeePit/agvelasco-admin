@@ -77,27 +77,11 @@ export async function getEnterprise(id: string) {
         id: item.id,
         title: item.title.rendered,
 
-        // featured_media: await getMediaIfIdExists(item.featured_media),
-        // sobre_imagem: await getMediaIfIdExists(sobre_imagem),
-        // video_background: await getMediaIfIdExists(video_background),
-        // mapa_imagem: await getMediaIfIdExists(mapa_imagem),
-        // diferenciais_imagem: await getMediaIfIdExists(diferenciais_imagem),
-
-        featured_media: !!`${item.featured_media}`.length
-          ? await getMedia(`${item.featured_media}`)
-          : undefined,
-        sobre_imagem: !!`${sobre_imagem}`.length
-          ? await getMedia(`${sobre_imagem}`)
-          : undefined,
-        video_background: !!`${video_background}`.length
-          ? await getMedia(`${video_background}`)
-          : undefined,
-        mapa_imagem: !!`${mapa_imagem}`.length
-          ? await getMedia(`${mapa_imagem}`)
-          : undefined,
-        diferenciais_imagem: !!`${diferenciais_imagem}`.length
-          ? await getMedia(`${diferenciais_imagem}`)
-          : undefined,
+        featured_media: (await getMediaIfIdExists(item.featured_media))?.url,
+        sobre_imagem: (await getMediaIfIdExists(sobre_imagem))?.url,
+        video_background: (await getMediaIfIdExists(video_background))?.url,
+        mapa_imagem: (await getMediaIfIdExists(mapa_imagem))?.url,
+        diferenciais_imagem: (await getMediaIfIdExists(diferenciais_imagem))?.url,
 
         imovel_banners: await Promise.all(
           returnArray(imovel_banners).map(async (banner: any) => ({
