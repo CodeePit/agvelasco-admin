@@ -181,13 +181,7 @@ export const EnterpriseForm = ({
                 clique ou arraste os arquivos para seleciona-los.
               </span>
               <UploadImageInput
-                file={
-                  banner
-                    ? banner
-                    : enterprise?.featured_media.length
-                    ? enterprise?.featured_media
-                    : null
-                }
+                file={banner ? banner : enterprise?.featured_media || null}
                 handleFile={setBanner}
                 id={id}
               />
@@ -221,27 +215,17 @@ export const EnterpriseForm = ({
         <SectionsWithBanner
           form={form}
           desc_banner={{
-            file: descBanner
-              ? descBanner
-              : enterprise?.sobre_imagem.length
-              ? enterprise?.sobre_imagem
-              : null,
+            file: descBanner ? descBanner : enterprise?.sobre_imagem || null,
             handleFile: setDescBanner,
           }}
           desc_map_banner={{
-            file: descMapBanner
-              ? descMapBanner
-              : enterprise?.mapa_imagem.length
-              ? enterprise?.mapa_imagem
-              : null,
+            file: descMapBanner ? descMapBanner : enterprise?.mapa_imagem || null,
             handleFile: setDescMapBanner,
           }}
           differentials_banner={{
             file: differentialsBanner
               ? differentialsBanner
-              : enterprise?.diferenciais_imagem.length
-              ? enterprise?.diferenciais_imagem
-              : null,
+              : enterprise?.diferenciais_imagem || null,
             handleFile: setDifferentialsBanner,
           }}
         />

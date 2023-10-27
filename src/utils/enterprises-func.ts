@@ -49,7 +49,13 @@ function returnArray(v: any) {
 }
 
 async function getMediaIfIdExists(id: any) {
-  return (`${id}`.length && (await getMedia(`${id}`))?.url) || '';
+  if (`${id}`.length) {
+    return await getMedia(`${id}`)
+      .then((r) => r)
+      .catch(() => undefined);
+  }
+
+  return undefined;
 }
 
 export async function getEnterprise(id: string) {
