@@ -212,7 +212,7 @@ export const EnterpriseForm = ({
         </div>
 
         <Separator className="my-4" />
-        <SectionsWithBanner
+        {/* <SectionsWithBanner
           form={form}
           desc_banner={{
             file: descBanner ? descBanner : enterprise?.sobre_imagem || null,
@@ -228,7 +228,7 @@ export const EnterpriseForm = ({
               : enterprise?.diferenciais_imagem || null,
             handleFile: setDifferentialsBanner,
           }}
-        />
+        /> */}
         <Separator className="my-4" />
         <EnterprisePlans handlePlans={setPlans} plans={plans} />
 
