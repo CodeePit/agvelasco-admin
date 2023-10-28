@@ -9,8 +9,10 @@ function valuesAreDifferent(obj: Record<string, any>, obj2?: Record<string, any>
   const objArr = Object.entries(obj);
   let isDifferent = false;
   for (let i = 0; i < objArr.length; i++) {
-    if (['file', 'size'].includes(objArr[i][0])) return;
-    if (obj2?.[objArr[i][0]] !== objArr[i][1]) {
+    if (
+      !['file', 'size'].includes(objArr[i][0]) &&
+      obj2?.[objArr[i][0]] !== objArr[i][1]
+    ) {
       isDifferent = true;
       break;
     }
@@ -126,6 +128,8 @@ export async function editEnterprise(
       imagem_planta: id,
       descricao_planta: desc?.replaceAll('<br>', '\r\n'),
     }));
+
+    console.log(plantas);
 
     await api.post(`/imovel/${defaultValues?.id}`, {
       title:
