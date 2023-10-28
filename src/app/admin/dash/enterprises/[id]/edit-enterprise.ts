@@ -26,7 +26,7 @@ async function handleImages(
   const imagesIds = images?.map(({ id }) => id) || [];
   const newImages =
     images?.reduce((acc, image) => {
-      const defaultImage = defaultImages?.find(({ id }) => image.id === id);
+      const defaultImage = defaultImages?.find((item) => image.id === item?.id);
       if (
         !defaultImagesIds.includes(image.id) ||
         (defaultImagesIds.includes(image.id) && valuesAreDifferent(image, defaultImage))
@@ -146,6 +146,7 @@ export async function editEnterprise(
     });
     return true;
   } catch (err) {
+    console.log(err);
     await Promise.all(
       ifErrImagesToDelete.map(async (id) => {
         await deleteMedia(id);

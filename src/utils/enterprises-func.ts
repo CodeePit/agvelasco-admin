@@ -200,7 +200,9 @@ function transformDateString(dateString: string) {
 export function traduceEnterpriseToForm(enterprise: Enterprise) {
   const status = enterprise.status.toLocaleLowerCase();
   return {
-    external_link: enterprise.link_empreendimento,
+    external_link: enterprise.link_empreendimento?.length
+      ? enterprise.link_empreendimento
+      : undefined,
     has_external_link: enterprise.link_externo === 'sim',
     name: enterprise.title,
     short_desc_emphasis: enterprise['destaque_frase_-_home'],
@@ -209,22 +211,26 @@ export function traduceEnterpriseToForm(enterprise: Enterprise) {
     video: enterprise.video,
     differentials: enterprise.diferenciais_lista,
     desc_map: enterprise.mapa_texto,
-    earthmoving: enterprise.terraplenagem ? `${enterprise.terraplenagem}` : undefined,
-    foundation: enterprise.fundacao ? `${enterprise.fundacao}` : undefined,
-    structure: enterprise.estrutura ? `${enterprise.estrutura}` : undefined,
-    tour_virtual: enterprise.tour_virtual ? `${enterprise.tour_virtual}` : undefined,
-    hydraulic_electrical: enterprise.hidraulica_eletrica
+    earthmoving: enterprise.terraplenagem?.length
+      ? `${enterprise.terraplenagem}`
+      : undefined,
+    foundation: enterprise.fundacao?.length ? `${enterprise.fundacao}` : undefined,
+    structure: enterprise.estrutura?.length ? `${enterprise.estrutura}` : undefined,
+    tour_virtual: enterprise.tour_virtual?.length
+      ? `${enterprise.tour_virtual}`
+      : undefined,
+    hydraulic_electrical: enterprise.hidraulica_eletrica?.length
       ? `${enterprise.hidraulica_eletrica}`
       : undefined,
-    finishing_plastering: enterprise.acabamento_reboco
+    finishing_plastering: enterprise.acabamento_reboco?.length
       ? `${enterprise.acabamento_reboco}`
       : undefined,
-    painting: enterprise.pintura ? `${enterprise.pintura}` : undefined,
+    painting: enterprise.pintura?.length ? `${enterprise.pintura}` : undefined,
     work_end_date: transformDateString(enterprise.previsao_de_entrega),
     work_start_date: transformDateString(enterprise.inicio_da_obra),
     desc_emphasis: enterprise.destaque_home
-      .replaceAll('\r\n', '<br>')
-      .replaceAll('\n', '<br>'),
+      ?.replaceAll('\r\n', '<br>')
+      ?.replaceAll('\n', '<br>'),
     status: status.includes('breve')
       ? 'soon_launch'
       : status.includes('em obras')
