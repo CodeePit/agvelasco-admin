@@ -26,17 +26,7 @@ async function handleImages(
 ) {
   const defaultImagesIds = defaultImages?.map(({ id }) => id) || [];
   const imagesIds = images?.map(({ id }) => id) || [];
-  const newImages =
-    images?.reduce((acc, image) => {
-      const defaultImage = defaultImages?.find((item) => image.id === item?.id);
-      if (
-        !defaultImagesIds.includes(image.id) ||
-        (defaultImagesIds.includes(image.id) && valuesAreDifferent(image, defaultImage))
-      )
-        acc.push(image);
-
-      return acc;
-    }, [] as DropzoneFields[]) || [];
+  const newImages = images || [];
   const removedImages = defaultImagesIds.filter((id) => !imagesIds.includes(id));
 
   await Promise.all(removedImages.map(deleteMedia));
