@@ -196,8 +196,7 @@ export const EnterpriseInfo = ({
         form={form}
         id="work_end_date"
         label="Previsão de entrega"
-        disabled={(date) => date < new Date()}
-        fromYear={new Date().getFullYear()}
+        fromYear={2008}
       />
     </div>
 
