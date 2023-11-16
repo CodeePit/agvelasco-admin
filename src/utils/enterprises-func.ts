@@ -277,7 +277,7 @@ export function traduceFormToEnterprise(
       status:
         enterprise.status === 'soon_launch'
           ? 'BREVE LANÇAMENTO'
-          : enterprise.status === 'new'
+          : enterprise.status === 'under_work'
           ? 'EM OBRAS'
           : enterprise.status === 'close'
           ? '100% VENDIDO'

@@ -119,8 +119,6 @@ export async function editEnterprise(
       descricao_planta: desc?.replaceAll('<br>', '\r\n'),
     }));
 
-    console.log(plantas);
-
     await api.post(`/imovel/${defaultValues?.id}`, {
       title:
         formattedData.title !== defaultValues?.title ? formattedData.title : undefined,
