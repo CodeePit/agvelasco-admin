@@ -166,7 +166,8 @@ export const EnterpriseForm = ({
                 <div className="w-full">
                   <h3>Banner</h3>
                   <span className="italic text-sm text-muted-foreground">
-                    clique ou arraste os arquivos para seleciona-los.
+                    clique ou arraste os arquivos para seleciona-los. <br />
+                    (1920 x 1080)
                   </span>
                   <UploadImageInput
                     file={
@@ -183,6 +184,7 @@ export const EnterpriseForm = ({
               id="work"
               handleImages={setGalleriaWork}
               images={galleriaWork}
+              size="(400 x 300)"
             />
           </EnterpriseInfo>
           <div className="w-full flex flex-col space-y-8">
@@ -190,6 +192,8 @@ export const EnterpriseForm = ({
               <h3>Banner destaque</h3>
               <span className="italic text-sm text-muted-foreground">
                 clique ou arraste os arquivos para seleciona-los.
+                <br />
+                (520 x 760)
               </span>
               <UploadImageInput
                 file={banner ? banner : enterprise?.featured_media || null}
@@ -206,18 +210,21 @@ export const EnterpriseForm = ({
               handleImages={setIcons}
               images={icons}
               fileSizeType="Kb"
+              size="(40 x 40)"
             />
             <CardImageDropzone
               title="Galeria DropZone"
               id="galleria"
               handleImages={setGalleria}
               images={galleria}
+              size="(400 x 300)"
             />
             <CardImageDropzone
               title="Banners DropZone"
               id="banner"
               handleImages={setBanners}
               images={banners}
+              size="(1920 x 1080)"
             />
           </div>
         </div>

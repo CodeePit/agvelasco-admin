@@ -25,6 +25,7 @@ type CardImageDropzoneProps<T> = {
   images: T[] | undefined;
   title: string;
   noAlt?: boolean;
+  size: string;
 };
 
 export function CardImageDropzone<T>({
@@ -37,6 +38,7 @@ export function CardImageDropzone<T>({
   title,
   renderForm,
   noAlt,
+  size,
 }: CardImageDropzoneProps<T>) {
   function handleDeleteImage(i: number, arr: any[]) {
     const newArr = [...arr];
@@ -49,7 +51,8 @@ export function CardImageDropzone<T>({
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>
-          clique ou arraste os arquivos para seleciona-los.
+          clique ou arraste os arquivos para seleciona-los. <br />
+          {size}
         </CardDescription>
         <DropzoneInput
           id={id}

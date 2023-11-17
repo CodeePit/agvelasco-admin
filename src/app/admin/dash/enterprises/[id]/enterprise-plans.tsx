@@ -19,6 +19,7 @@ export const EnterprisePlans = ({
     handleImages={handlePlans as any}
     images={plans}
     noAlt
+    size="(500 x 500)"
     renderForm={(plan) => (
       <div className="space-y-2 space-x-4 items-start flex border-b pb-4">
         <div className="w-fit mt-2">

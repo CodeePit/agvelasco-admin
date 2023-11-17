@@ -44,7 +44,8 @@ const RichTextWithImageUpload = ({
     <div className="w-full">
       <h3>Banner: {label}</h3>
       <span className="italic text-sm text-muted-foreground">
-        clique ou arraste os arquivos para seleciona-los.
+        clique ou arraste os arquivos para seleciona-los. <br />
+        (590 × 332)
       </span>
       <UploadImageInput file={file} handleFile={handleFile} id={id} />
     </div>
